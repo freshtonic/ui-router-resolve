@@ -1,0 +1,24 @@
+<!doctype html>
+<html>
+  <head>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+    <script src="app/main.js"></script>
+  </head>
+  <body ng-app='myApp'>
+    <h1>Angular UI router experiment</h1>
+    <p>
+      This is an app with two states - an abstrat base state called 'root' and a concrete child state called 'foo'.
+      </p>
+
+      <p>
+      A message is defined in the root state's resolve block, but in such a way that it will resolve immediately, by wrapping it in a promise. Essentially the root state triggers the loading of this value but does not 'depend' on it before it's controller is instatiated.
+      </p>
+
+
+      <p>
+      For the child state, the value is mandatory, but we don't want to trigger another request. But because the value in the parent state has exposed its promise, we can access it and depend on it - so the child state transition will not happen until the message has been resolved, yet we still only make one aync request. If it was the poller - only one network request would have been made.
+    </p>
+    <div ui-view></div>
+  </body>
+</html>
